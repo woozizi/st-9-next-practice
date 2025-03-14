@@ -11,7 +11,7 @@ type NewsItem = {
 
 const Newspage = async () => {
   const response = await fetch("http://localhost:4000/news", {
-    next: { revalidate: 1000 },
+    next: { revalidate: 5 },
   });
   const news: NewsItem[] = await response.json();
 
