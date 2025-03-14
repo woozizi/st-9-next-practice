@@ -1,12 +1,17 @@
-export async function fetchData() {
-  const res = await fetch("http://localhost:4000/intro");
-  const introData = await res.json();
+import React from "react";
 
-  return { introData };
-}
+type Intro = {
+  description1: string;
+  description2: string;
+  description3: string;
+};
 
-export default function HomePage({ introData }) {
-  if (!introData) return <div>로딩중...</div>;
+const HomePage = async () => {
+  const response = await fetch("http://localhost:4000/intro", {
+    cache: "force-cache",
+  });
+  const introData: Intro = await response.json();
+  console.log("data", introData);
 
   return (
     <div className="home-container">
@@ -27,4 +32,6 @@ export default function HomePage({ introData }) {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;
